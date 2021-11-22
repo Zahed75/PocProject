@@ -4,7 +4,6 @@ from django.http import HttpResponse
 
 from . import views
 
-app_name = 'PocApp'
 
 def poc(request):
     return HttpResponse("Home sweet home")
