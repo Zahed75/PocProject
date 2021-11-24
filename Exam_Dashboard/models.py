@@ -49,10 +49,8 @@ class ExamModel(models.Model):
         return self.name
 
 
-class QuestionModel(models.Model):
+class Quiz(models.Model):
     exam = models.ForeignKey(ExamModel, on_delete=models.CASCADE)
-    question_body=models.TextField(max_length=1000)
-    question_img=models.ImageField(upload_to='question_bank')
-    ans=(
-        ''
-    )
+    question_body = models.TextField(max_length=1000)
+    question_img = models.ImageField(upload_to='question_bank')
+    option_1 = models.CharField()
