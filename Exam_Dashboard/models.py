@@ -23,8 +23,8 @@ class ExamPack(models.Model):
 class ExamModel(models.Model):
     name = models.CharField(max_length=1000)
     details = models.TextField()
-    # time = models.TimeField()
-    # date = models.DateField()
+    time = models.TimeField()
+    date = models.DateField()
     cover_photo = models.ImageField(upload_to='exam_cover_photos', blank=True, null=True)
     
     # assign student
