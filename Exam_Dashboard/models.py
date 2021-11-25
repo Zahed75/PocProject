@@ -37,6 +37,7 @@ class ExamModel(models.Model):
     # marking
     total_mark = models.IntegerField(default=0)
     pass_mark = models.IntegerField(default=0)
+    mark_per_question = models.IntegerField(default=1)
 
     isRandomized = models.BooleanField(default=False, verbose_name='Randomization')
     isSorted = models.BooleanField(default=False, verbose_name='Sorting')
@@ -50,7 +51,24 @@ class ExamModel(models.Model):
 
 
 class Quiz(models.Model):
+
+    # for quiz types
+    type_choices = [
+        ('type 1', 'type 1'),
+        ('type 2', 'type 2'),
+    ]
+
     exam = models.ForeignKey(ExamModel, on_delete=models.CASCADE)
     question_body = models.TextField(max_length=1000)
     question_img = models.ImageField(upload_to='question_bank')
-    option_1 = models.CharField()
+    exam_type = models.CharField(choices=type_choices, max_length=30)
+    op_1 = models.CharField(max_length=200, null=True)
+    op_2 = models.CharField(max_length=200, null=True)
+    op_3 = models.CharField(max_length=200, null=True)
+    op_4 = models.CharField(max_length=200, null=True)
+    answer = models.CharField(max_length=200, null=True)
+    
+
+    def __str__(self):
+        return self.question_body
+

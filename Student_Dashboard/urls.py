@@ -4,7 +4,7 @@ from django.http import HttpResponse
 
 from . import views
 
-app_name = 'Login_App'
+app_name = 'Student_Dashboard'
 
 def student(request):
     return HttpResponse("Home sweet home")
