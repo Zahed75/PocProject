@@ -28,6 +28,7 @@ class ExamModel(models.Model):
     details = models.TextField()
     time = models.TimeField()
     date = models.DateField()
+    paragraph = models.TextField(blank=True, null=True)
     cover_photo = models.ImageField(upload_to='exam_cover_photos', blank=True, null=True)
 
     # assign student
