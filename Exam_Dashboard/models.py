@@ -73,3 +73,10 @@ class Quiz(models.Model):
     def __str__(self):
         return self.question_body
 
+
+
+
+class ExamUtils(models.Model):
+    level=models.CharField(max_length=100,blank=True)
+    batch=models.CharField(max_length=100,blank=True)
+
