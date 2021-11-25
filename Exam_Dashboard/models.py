@@ -6,17 +6,11 @@ from Login_App.models import *
 
 # Create your models here.
 
-class Batch(models.Model):
-    name = models.CharField(max_length=1000, verbose_name='Batch')
-
-    def __str__(self):
-        return self.name
-
 
 class ExamPack(models.Model):
     name = models.CharField(max_length=1000, verbose_name='Exam Pack Name')
     details = models.TextField()
-    batch = models.ForeignKey(Batch, on_delete=models.CASCADE, related_name='exam_pack_batch')
+    batch = models.CharField(max_length=100)
     cover_photo = models.ImageField(upload_to='exam_pack_cover_photos', null=True, blank=True)
 
     def __str__(self):
@@ -32,7 +26,7 @@ class ExamModel(models.Model):
     cover_photo = models.ImageField(upload_to='exam_cover_photos', blank=True, null=True)
 
     # assign student
-    batch = models.ForeignKey(Batch, on_delete=models.CASCADE, related_name='exam_batch')
+    batch = models.CharField(max_length=100)
     exam_pack = models.ForeignKey(ExamPack, on_delete=models.CASCADE, related_name='exam_pack')
 
     # marking
@@ -77,6 +71,5 @@ class Quiz(models.Model):
 
 
 class ExamUtils(models.Model):
-    level=models.CharField(max_length=100,blank=True)
-    batch=models.CharField(max_length=100,blank=True)
-
+    level = models.CharField(max_length=100, blank=True)
+    batch = models.CharField(max_length=100, blank=True)
