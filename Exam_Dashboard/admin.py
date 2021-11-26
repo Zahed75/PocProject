@@ -1,10 +1,6 @@
 from django.contrib import admin
 from .models import *
 # Register your models here.
-@admin.register(Batch)
-class BatchModelAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-
 
 @admin.register(ExamPack)
 class ExamPackModelAdmin(admin.ModelAdmin):
