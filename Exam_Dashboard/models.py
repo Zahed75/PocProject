@@ -1,6 +1,6 @@
 from django.db import models
 
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from Login_App.models import *
 
 
@@ -76,4 +76,4 @@ class Quiz(models.Model):
 class ExamUtils(models.Model):
     level = models.CharField(max_length=100, blank=True)
     batch = models.CharField(max_length=100, blank=True)
-    board=models.CharField(max_length=100,blank=True)
+    board = models.CharField(max_length=100,blank=True)
