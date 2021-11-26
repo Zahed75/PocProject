@@ -21,6 +21,7 @@ class StudentModel(models.Model):
     phone_number = models.CharField(max_length=14, unique=True, verbose_name='Phone number')
     full_name = models.CharField(max_length=100, blank=False, verbose_name='Full Name')
     batch = models.CharField(max_length=100)
+    level = models.CharField(max_length=100)
     institution = models.CharField(max_length=500)
     board = models.CharField(choices=boards, max_length=50)
     

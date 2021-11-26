@@ -11,6 +11,7 @@ class ExamPack(models.Model):
     name = models.CharField(max_length=1000, verbose_name='Exam Pack Name')
     details = models.TextField()
     batch = models.CharField(max_length=100)
+    level = models.CharField(max_length=100)
     cover_photo = models.ImageField(upload_to='exam_pack_cover_photos', null=True, blank=True)
 
     def __str__(self):
@@ -22,10 +23,10 @@ class ExamModel(models.Model):
     details = models.TextField()
     time = models.TimeField()
     date = models.DateField()
-    paragraph = models.TextField(blank=True, null=True)
     cover_photo = models.ImageField(upload_to='exam_cover_photos', blank=True, null=True)
 
     # assign student
+    level = models.CharField(max_length=100)
     batch = models.CharField(max_length=100)
     exam_pack = models.ForeignKey(ExamPack, on_delete=models.CASCADE, related_name='exam_pack')
 
@@ -51,11 +52,13 @@ class Quiz(models.Model):
     type_choices = [
         ('type 1', 'type 1'),
         ('type 2', 'type 2'),
+        ('type 3', 'type 3'),
     ]
 
     exam = models.ForeignKey(ExamModel, on_delete=models.CASCADE)
     question_body = models.TextField(max_length=1000)
-    question_img = models.ImageField(upload_to='question_bank')
+    paragraph = models.TextField(blank=True, null=True)
+    question_img = models.ImageField(upload_to='question_bank', blank=True, null=True)
     exam_type = models.CharField(choices=type_choices, max_length=30)
     op_1 = models.CharField(max_length=200, null=True)
     op_2 = models.CharField(max_length=200, null=True)
