@@ -17,4 +17,4 @@ class ExamModelModelAdmin(admin.ModelAdmin):
 
 @admin.register(ExamUtils)
 class ExamUtilsModelAdmin(admin.ModelAdmin):
-    list_display = ('level','batch')
+    list_display = ('level','batch','board')

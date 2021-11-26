@@ -6,4 +6,4 @@ from .models import *
 
 @admin.register(StudentModel)
 class StudentModelAdmin(admin.ModelAdmin):
-    list_display = ('user', 'phone_number', 'full_name', 'batch', 'institution', 'board')
+    list_display = ('user', 'phone_number', 'full_name', 'batch', 'institution',)

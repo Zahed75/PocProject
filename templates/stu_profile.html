@@ -5,6 +5,49 @@
     <title>Title</title>
 </head>
 <body>
+<form method="POST">
+    <label for="name">Your Name:</label><br>
+    <input type="text" id="name" name="name" value=""><br>
+    <label for="email">Email address</label><br>
+    <input type="email" id="email" name="email" value=""><br><br>
+    <!-- ========   Drop down=====-->
+    <label for="batch">Select Batch:</label>
 
+    <!-- The value for `for=""` and `id=""` has to be same. -->
+
+    <select id="batch">
+        <option value="item-1">Item 1</option>
+        <option value="item-2">Item 2</option>
+        <option value="item-3">Item 3</option>
+        <option value="item-4">Item 4</option>
+    </select>
+
+    <label for="level">Select Level:</label>
+
+    <!-- The value for `for=""` and `id=""` has to be same. -->
+
+    <select id="level">
+        <option value="level">level 1</option>
+        <option value="item-2">Level 2</option>
+        <option value="item-3">Level 3</option>
+        <option value="item-4">level 4</option>
+    </select>
+
+    <label for="board">Select Board:</label>
+
+    <!-- The value for `for=""` and `id=""` has to be same. -->
+
+    <select id="board">
+        <option value="level">DHAKA</option>
+        <option value="item-2">CTG</option>
+        <option value="item-3">Level 3</option>
+        <option value="item-4">level 4</option>
+    </select>
+
+    <label for="board">Board:</label><br>
+    <input type="text" id="board" name="board" value=""><br>
+
+    <input type="submit" value="Submit">
+</form>
 </body>
 </html>
