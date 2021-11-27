@@ -3,7 +3,6 @@ from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
 
-
 class UserManager(BaseUserManager):
     def create_user(self, phone_number, password=None):
         """
@@ -13,7 +12,7 @@ class UserManager(BaseUserManager):
             raise ValueError('Users must have an email address')
 
         user = self.model(
-            email=self.normalize_email(phone_number),
+            phone_number=phone_number,
         )
 
         user.set_password(password)
@@ -25,7 +24,7 @@ class UserManager(BaseUserManager):
         Creates and saves a staff user with the given email and password.
         """
         user = self.create_user(
-            phone_number=phone_number,
+            phone_number,
             password=password,
         )
         user.staff = True
@@ -37,25 +36,23 @@ class UserManager(BaseUserManager):
         Creates and saves a superuser with the given email and password.
         """
         user = self.create_user(
-            phone_number=phone_number,
+            phone_number,
             password=password,
         )
         user.staff = True
         user.admin = True
+        user.active = True
         user.save(using=self._db)
         return user
 
 
 class User(AbstractBaseUser):
-    phone_number = models.EmailField(
-        verbose_name='phone number',
+    phone_number = models.CharField(
+        verbose_name='Phone Number',
         max_length=255,
         unique=True,
     )
-
-    objects = UserManager()
-
-    is_active = models.BooleanField(default=True)
+    active = models.BooleanField(default=True)
     staff = models.BooleanField(default=False) # a admin user; non super-user
     admin = models.BooleanField(default=False) # a superuser
 
@@ -63,6 +60,7 @@ class User(AbstractBaseUser):
 
     USERNAME_FIELD = 'phone_number'
     REQUIRED_FIELDS = [] # Email & Password are required by default.
+    objects = UserManager()
 
     def get_full_name(self):
         # The user is identified by their email address
@@ -94,6 +92,10 @@ class User(AbstractBaseUser):
     def is_admin(self):
         "Is the user a admin member?"
         return self.admin
+
+    @property
+    def is_active(self):
+        return self.active
 
 
 class StudentModel(models.Model):

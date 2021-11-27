@@ -1,11 +1,27 @@
 from django.shortcuts import render, HttpResponseRedirect, redirect
 
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from .models import *
 
 from django.urls import reverse
 
-# Create your views here.
+from rest_framework import permissions
+from rest_framework.generics import CreateAPIView
+from django.contrib.auth import get_user_model # If used custom user model
+
+from .serializers import UserSerializer
+
+
+class CreateUserView(CreateAPIView):
+
+    alluser = User
+    serializer_class = UserSerializer(request.data)
+
+    model = get_user_model()
+    permission_classes = [
+        permissions.AllowAny # Or anon users can't register
+    ]
+    
 
 
 def register(request):

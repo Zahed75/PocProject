@@ -5,3 +5,5 @@ sqlparse==0.4.2
 mysqlclient
 django-mysql
 django-cleanup
+djangorestframework
+pillow

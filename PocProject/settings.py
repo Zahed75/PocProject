@@ -27,12 +27,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # poc apps
     'PocApp',
-    'django_cleanup.apps.CleanupConfig',
-    'rest_framework',
     'Login_App',
     'Student_Dashboard',
-    'Exam_Dashboard'
+    'Exam_Dashboard',
+
+    # rest framework
+    'rest_framework',
+    'rest_framework.authtoken',
+
+    # database cleanup
+    'django_cleanup.apps.CleanupConfig',
+    
 ]
 
 MIDDLEWARE = [
@@ -41,6 +49,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    # 'django.contrib.auth.middleware.RemoteUserMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -98,6 +107,11 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'Login_App.User'
+
+# AUTHENTICATION_BACKENDS = (
+#         'django.contrib.auth.backends.RemoteUserBackend',
+# )
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
