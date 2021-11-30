@@ -12,15 +12,15 @@ from django.contrib.auth import get_user_model # If used custom user model
 from .serializers import UserSerializer
 
 
-class CreateUserView(CreateAPIView):
+# class CreateUserView(CreateAPIView):
 
-    alluser = User
-    serializer_class = UserSerializer(request.data)
+#     alluser = User
+#     serializer_class = UserSerializer(request.data)
 
-    model = get_user_model()
-    permission_classes = [
-        permissions.AllowAny # Or anon users can't register
-    ]
+#     model = get_user_model()
+#     permission_classes = [
+#         permissions.AllowAny # Or anon users can't register
+#     ]
     
 
 
