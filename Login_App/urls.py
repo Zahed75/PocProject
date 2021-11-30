@@ -9,5 +9,5 @@ def home(request):
 
 urlpatterns = [
     path('', home, name='home'),
-    path('register', views.CreateAPIView.as_view(), name='register'),
+    path('register', views.Register.as_view(), name='register'),
 ]

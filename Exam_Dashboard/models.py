@@ -73,7 +73,3 @@ class Quiz(models.Model):
 
 
 
-class ExamUtils(models.Model):
-    level = models.CharField(max_length=100, blank=True)
-    batch = models.CharField(max_length=100, blank=True)
-    board = models.CharField(max_length=100,blank=True)

@@ -3,13 +3,15 @@ from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
 
+from django.contrib.auth.models import User
+
 class UserManager(BaseUserManager):
     def create_user(self, phone_number, password=None):
         """
         Creates and saves a User with the given email and password.
         """
         if not phone_number:
-            raise ValueError('Users must have an email address')
+            raise ValueError('Users must have an valid phone number')
 
         user = self.model(
             phone_number=phone_number,
@@ -53,13 +55,13 @@ class User(AbstractBaseUser):
         unique=True,
     )
     active = models.BooleanField(default=True)
-    staff = models.BooleanField(default=False) # a admin user; non super-user
-    admin = models.BooleanField(default=False) # a superuser
+    staff = models.BooleanField(default=False)  # a admin user; non super-user
+    admin = models.BooleanField(default=False)  # a superuser
 
     # notice the absence of a "Password field", that is built in.
 
     USERNAME_FIELD = 'phone_number'
-    REQUIRED_FIELDS = [] # Email & Password are required by default.
+    REQUIRED_FIELDS = []  # Email & Password are required by default.
     objects = UserManager()
 
     def get_full_name(self):
@@ -99,7 +101,6 @@ class User(AbstractBaseUser):
 
 
 class StudentModel(models.Model):
-
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='student_auth')
     phone_number = models.CharField(max_length=14, unique=True, verbose_name='Phone number')
     full_name = models.CharField(max_length=100, blank=True, null=True, verbose_name='Full Name')
@@ -107,11 +108,34 @@ class StudentModel(models.Model):
     level = models.CharField(max_length=100, blank=True, null=True)
     institution = models.CharField(max_length=500, blank=True, null=True)
     board = models.CharField(max_length=50, blank=True, null=True)
-    
+
     # otp 
-    
+
     def __str__(self):
         return self.user.username + " " + self.phone_number
 
 
+class Student_Reg(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone_number=models.CharField(max_length=11,default='01')
 
+    def __str__(self):
+        return self.phone_number
+
+class Student_Profile(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    name = models.CharField(max_length=50, blank=False,verbose_name='Student Name')
+    email=models.EmailField(max_length=22,blank=True,null=True,verbose_name='Student Mail')
+    level=models.CharField(max_length=30,blank=False,verbose_name='Student level')
+    batch=models.CharField(max_length=40,blank=False,verbose_name='Studnt Batch')
+    board=models.CharField(max_length=300,blank=False,verbose_name='Student Board')
+    institution=models.CharField(max_length=100,blank=False,verbose_name='Student Instituton')
+
+    def __str__(self):
+        return self.name
+
+
+class ExamTool(models.Model):
+    level = models.CharField(max_length=100, blank=True)
+    batch = models.CharField(max_length=100, blank=True)
+    board = models.CharField(max_length=100,blank=True)
